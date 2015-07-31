@@ -1,0 +1,19 @@
+topic: ~quelle_recette()
+language: frf
+
+# Defining extra concepts out of words or group of words
+concept:(hello) [hello hi hey "good morning" greetings]
+concept:(oui) ^rand[oui ok "ça marche" yep "bien sûr"]
+concept:(non) [non nope "don't want" "no way" never "not at all"]
+concept:(aquiesce)^rand[super cool nickel]
+# Catching inputs and triggering outputs
+#u:(e:onStart) $onStopped=1
+
+# Replying to speech
+#u:(~hello) ~hello
+
+u:(e:onStart) Voulez-vous ^goto(tatin)
+ 
+proposal:%tatin faire une tarte Tatin?
+    u1:(~oui) ~aquiesce c'est parti $onStopped=1
+    u1:(~non) Je ne sais rien faire d'autre! S'il vous plait peut-on ^sameProposal

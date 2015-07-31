@@ -1,0 +1,48 @@
+topic: ~Letstatin()
+language: frf
+
+concept:(oui) [oui ok "ça marche" yep "je crois"]
+concept:(non) [non nope "don't want" "no way" never "not at all"]
+concept:(repeat) [répète encore quoi "pas compris" comment "tu disais"]
+concept:(thx) [merci thanks gracias]
+concept:(hello) [hello hi hey "good morning" greetings]
+concept:(bye) ["stop la recette" "j'arrête la recette"]
+concept:(next) [next oui ok d'accord dac ensuite après suivant "et après" "c'est fait" "c'est bon"]
+concept:(pause) [attends stop minute]
+concept:(aquiesce) ^rand[ok nickel super cool]
+
+u:(e:onStart) %letsbegin ^startTag(show) Etes-vous prêt?
+    u1:(~oui)  ^nextProposal
+    u1:(~non) Dites-moi quand vous serez prêt. ^stayInScope
+
+proposal:%debut Alors : Temps de préparation : 20 minutes. Temps de cuisson 40 min
+proposal:Ingrédients : 8 pommes
+proposal:Une pâte brisée, feuilletée ou une sablée que l'on peut faire quand les pommes cuisent
+proposal:un peu de cannelle si on le souhaite
+proposal:100 g de beurre
+proposal:100 g de sucre en poudre
+proposal:Avez-vous tous les ingrédients?
+    u1:(~oui) Alors allons-y.^nextProposal
+    u1:(~non) Mince, voulez-vous écouter la recette quand-même?
+        u2:(~oui) Ok ^nextProposal
+        u2:(~non) Ok $onStopped=1
+proposal:Préchauffez votre four à 180 ou thermostat 6.
+proposal:Dans un moule à tarte rond, beurrez, saupoudrer le sucre et un zeste de citron. Enfournez 10 minutes pour préparer le caramel.
+proposal:Pendant que le caramel se fait, éplucher les 8 pommes. Les couper en gros morceaux. vous avez 10 minutes.
+proposal:Lorsque le caramel est doré, ajoutez les pommes et réenfournez pendant environ 10 min. Pendant ce temps, préparez votre pâte si elle n'est pas toute faite.
+Vous avez 10 minutes.
+proposal:Ajouter la pâte sur les pommes en appuyant bien sur les bords. Remettez au four pour 40 min
+proposal:Le temps est écoulé.ça doit être prêt. C'est encore meilleur tiède. Miam.
+
+
+u:(~next) ^nextProposal
+# On any proposal if user asks to repeat, say again the same proposal.
+u:(~repeat) J'ai dit ^sameProposal
+u:(et avant) ^previousProposal
+u:(~thx)De rien j'adore la tarte Tatin de Lamotte-Beuvron.
+u:(~pause)Oui, dites-moi quand je reprends.
+u:(on recommence depuis le début) C'est parti. ^gotoReactivate(debut)
+u:(["je suis perdu" "je ne sais plus"]) Voulez-vous recommencer?
+    u1:(~oui) Ok ^gotoReactivate(debut)
+    u1:(~non) Nous en êtions à ^sameProposal
+u:(~bye) ~bye $onStopped=1

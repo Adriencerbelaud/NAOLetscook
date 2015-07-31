@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<package version="0.0.0" uuid="letscook-d1a4a8">
+ <names>
+  <name lang="en_US">Letscook</name>
+  <name lang="fr_FR">Let's cook Tatin</name>
+ </names>
+ <supportedLanguages>
+  <language>fr_FR</language>
+ </supportedLanguages>
+ <descriptionLanguages>
+  <language>fr_FR</language>
+ </descriptionLanguages>
+ <contents>
+  <behaviorContent path="letscook">
+   <userRequestable/>
+   <nature>interactive</nature>
+   <names>
+    <name lang="fr_FR">Letscook</name>
+   </names>
+   <descriptions>
+    <description lang="fr_FR">Lance l'application</description>
+   </descriptions>
+   <triggerSentences>
+    <sentence lang="fr_FR">Faisons de la cuisine</sentence>
+    <sentence lang="fr_FR">on fait une tarte</sentence>
+    <sentence lang="fr_FR">tarte</sentence>
+   </triggerSentences>
+   <loadingResponses>
+    <sentence lang="fr_FR">je valide</sentence>
+    <sentence lang="fr_FR">super</sentence>
+    <sentence lang="fr_FR">c'est parti</sentence>
+   </loadingResponses>
+   <autonomous/>
+   <permissions/>
+  </behaviorContent>
+ </contents>
+</package>
